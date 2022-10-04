@@ -37,11 +37,39 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
+        hode = null;
+        hale = null;
+        antall = 0;
+        endringer = 0;
     }
 
     public DobbeltLenketListe(T[] a) {
-        throw new UnsupportedOperationException();
+        
+        if (a == null){
+        throw new UnsupportedOperationException("Tabellen a er null!!");
+    }
+        
+    Node<T> forrige = null;
+    Node<T> nyNode = null;
+    
+    for (T verdi : a) {
+        if(verdi ==  null)
+            continue;
+        antall++;
+        NyNode == new Node<>(verdi, forrige, null);
+        
+        if(forrige != null) {
+            forrige.neste = NyNode;
+        }
+        else {
+            hode = nyNode;
+        }
+        
+        forrige = nyNode;
+        //endringer 
+    }
+    hale = nyNode;
+    
     }
 
     public Liste<T> subliste(int fra, int til) {
