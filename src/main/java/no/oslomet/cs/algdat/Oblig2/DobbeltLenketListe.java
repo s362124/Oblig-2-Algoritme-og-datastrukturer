@@ -145,9 +145,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return finnNode(indeks).verdi;
     }
 
+    // Oppgave 4
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+        int firstIndeks = -1;
+        for(int i = 0; i < antall; i++){
+            if(hent(i).equals(verdi)){
+                firstIndeks = i;
+                break;
+            }
+        }
+        return firstIndeks;
     }
 
     // Oppgave 3 a)
