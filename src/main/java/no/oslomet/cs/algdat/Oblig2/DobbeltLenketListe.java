@@ -47,7 +47,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public DobbeltLenketListe(T[] a) {
         
         if (a == null){
-        throw new UnsupportedOperationException("Tabellen a er null!!");
+        throw new NullPointerException("Tabellen a er null!!");
     }
         
     Node<T> forrige = null;
