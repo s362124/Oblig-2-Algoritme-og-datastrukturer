@@ -232,7 +232,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             s.verdi = null;
             s = r;
         }
-        throw new UnsupportedOperationException();
+        hode = hale = null;
+        antall = 0;
+        endringer++;
     }
 
     @Override
