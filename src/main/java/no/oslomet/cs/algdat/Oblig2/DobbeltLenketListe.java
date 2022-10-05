@@ -47,15 +47,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public DobbeltLenketListe(T[] a) {
         
         if (a == null){
-        throw new UnsupportedOperationException("Tabellen a er null!!");
+        throw new NullPointerException("Tabellen a er null!!");
     }
         
     Node<T> forrige = null;
     Node<T> newNode = null;
     
     for (T verdi : a) {
-        if(verdi ==  null)
+        if(verdi ==  null) {
             continue;
+        }
         antall++;
         newNode = new Node<>(verdi, forrige, null);
         
@@ -165,9 +166,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    // Oppgave 4
     @Override
     public boolean inneholder(T verdi) {
-        throw new UnsupportedOperationException();
+        if(indeksTil(verdi) != -1){
+            return true;
+        }
+        else return false;
     }
 
     // Oppgave 3 a)
@@ -179,9 +184,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return finnNode(indeks).verdi;
     }
 
+    // Oppgave 4
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+        int firstIndeks = -1;
+        for(int i = 0; i < antall; i++){
+            if(hent(i).equals(verdi)){
+                firstIndeks = i;
+                break;
+            }
+        }
+        return firstIndeks;
     }
 
     // Oppgave 3 a)
