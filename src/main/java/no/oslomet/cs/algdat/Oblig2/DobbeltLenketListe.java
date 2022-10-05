@@ -50,25 +50,25 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
         
     Node<T> forrige = null;
-    Node<T> nyNode = null;
+    Node<T> newNode = null;
     
     for (T verdi : a) {
         if(verdi ==  null)
             continue;
         antall++;
-        NyNode == new Node<>(verdi, forrige, null);
+        newNode == new Node<>(verdi, forrige, null);
         
         if(forrige != null) {
-            forrige.neste = NyNode;
+            forrige.neste = newNode;
         }
         else {
-            hode = nyNode;
+            hode = newNode;
         }
         
-        forrige = nyNode;
+        forrige = newNode;
         //endringer 
     }
-    hale = nyNode;
+    hale = newNode;
     
     }
 
