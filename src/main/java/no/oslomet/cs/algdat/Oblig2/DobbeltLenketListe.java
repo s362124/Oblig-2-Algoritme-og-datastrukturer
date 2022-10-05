@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Objects;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -72,6 +73,39 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     
     }
 
+    // Oppgave 3 a)
+    private Node<T> finnNode(int indeks){
+        // Må endre variabelnavnet!
+        Node<T> current = null;
+        // Hvis indeks er mindre enn antall/2
+        if (indeks == 0 && antall == 1){
+            current = hode;
+            return current;
+        }
+
+        if (indeks == antall - 1){
+            current = hale;
+            return current;
+        }
+
+        if (indeks < (antall / 2)){
+            // Letingen etter noden skal starte fra hode og gå mot høyre ved hjelp av neste-pekere.
+            for (int i = 0; i < indeks; ++i){
+                current = current.neste;
+            }
+        } else {
+            // Letingen skal starte fra halen og gå mot venstre ved hjelp av forrige-pekere.
+            current = hale;
+            for (int j = 0; j < antall - 1; j--){
+                current = current.forrige;
+            }
+        }
+
+        return current;
+    }
+
+
+    // Oppgave 3 b)
     public Liste<T> subliste(int fra, int til) {
         throw new UnsupportedOperationException();
     }
@@ -101,9 +135,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    // Oppgave 3 a)
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        // Bruker false som parameter i indekskontroll()
+        indeksKontroll(indeks, false);
+
+        return finnNode(indeks).verdi;
     }
 
     @Override
@@ -111,9 +149,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    // Oppgave 3 a)
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException();
+        // Jeg vet ikke om dette er riktig, så må få dette sjekket.
+        if (indeks == 0){
+            Objects.requireNonNull(nyverdi, "Null-verdier kan ikke legges inn!");
+            // Variabelen øker for hver endring, dvs. for alle mutatorer.
+            for (int i = 0; i < endringer; ++i){
+                // return nyverdi;
+            }
+        }
+
+        return nyverdi;
     }
 
     @Override
