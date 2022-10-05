@@ -131,9 +131,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    // Oppgave 4
     @Override
     public boolean inneholder(T verdi) {
-        throw new UnsupportedOperationException();
+        if(indeksTil(verdi) != -1){
+            return true;
+        }
+        else return false;
     }
 
     // Oppgave 3 a)
