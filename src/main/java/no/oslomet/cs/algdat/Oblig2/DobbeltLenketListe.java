@@ -107,7 +107,42 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     // Oppgave 3 b)
     public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException();
+        // En instans av klassen DobbeltLenketListe()
+        DobbeltLenketListe<T> liste = new DobbeltLenketListe<>();
+
+        // Skjekker om indeksene fra og til er lovlige
+        for (int i = fra; i < til; ++i){
+            liste.leggInn(finnNode(i).verdi);
+        }
+
+        fratilKontroll(antall, fra, til);
+
+        // Returnerer listen
+        return liste;
+    }
+
+    // Oppgave 3 b)
+    // Legger inn metoden fratilKontroll som en privat metode.
+    private void fratilKontroll(int antall, int fra, int til) {
+        /*
+        Se for-løkke:
+        Indeksene er lovlige hvis i starter fra fra-verdien og
+        slutter til når i er mindre enn til-verdien.
+         */
+        // Hvis fra-verdien er mindre enn null, så er verdien negativ
+        if (fra < 0){
+            throw new IndexOutOfBoundsException("fra (" + fra + ") - Intervallet er negativt!");
+        }
+
+        // Hvis fra-verdien er større enn til-verdien
+        if (fra > til){
+            throw new IndexOutOfBoundsException("fra(" + fra + ") > til(" + til + ") - Intervallet er ikke lovlig!");
+        }
+
+        // Hvis til-verdien er større enn antall verdier, så skriv ut melding
+        if (til > antall){
+            throw new IndexOutOfBoundsException("til(" + til + ") > antall(" + antall + ")");
+        }
     }
 
     @Override
