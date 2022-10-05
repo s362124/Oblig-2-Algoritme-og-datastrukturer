@@ -56,7 +56,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if(verdi ==  null)
             continue;
         antall++;
-        newNode == new Node<>(verdi, forrige, null);
+        newNode = new Node<>(verdi, forrige, null);
         
         if(forrige != null) {
             forrige.neste = newNode;
