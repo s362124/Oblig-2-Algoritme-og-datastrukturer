@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 
@@ -201,12 +202,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public T oppdater(int indeks, T nyverdi) {
         // Jeg vet ikke om dette er riktig, så må få dette sjekket.
-        if (indeks == 0){
-            Objects.requireNonNull(nyverdi, "Null-verdier kan ikke legges inn!");
-            // Variabelen øker for hver endring, dvs. for alle mutatorer.
-            for (int i = 0; i < endringer; ++i){
-                // return nyverdi;
-            }
+        Objects.requireNonNull(nyverdi, "Null-verdier kan ikke legges inn!");
+        // Variabelen øker for hver endring, dvs. for alle mutatorer.
+        for (int i = 0; i < endringer; ++i){
+            // return nyverdi;
         }
 
         return nyverdi;
@@ -216,8 +215,46 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean fjern(T verdi) {
         // Skal fjerne verdi fra listen og så returnere true.
-        boolean forekomst = false;
-        throw new UnsupportedOperationException();
+        if (verdi == null){
+            return false;
+        }
+        Node<T> fjernNode = null;
+        Node<T> node = hode;
+
+        while(node != null){
+            if (node.verdi.equals(verdi)){
+                fjernNode = node;
+                break;
+            } else {
+                node = node.neste;
+            }
+        }
+
+        if (fjernNode == null){
+            return false;
+        }
+
+        fjernNode.verdi = null;
+
+        if (fjernNode == hode && fjernNode.neste != null){
+            hode = fjernNode.neste;
+        }
+
+        if (fjernNode == hale && fjernNode.forrige != null){
+            hale = fjernNode.forrige;
+        }
+
+        if (fjernNode.forrige != null){
+            fjernNode.forrige.neste = fjernNode.neste;
+        }
+
+        if (fjernNode.neste != null){
+            fjernNode.neste.forrige = fjernNode.forrige;
+        }
+
+        antall--;
+        endringer++;
+        return true;
     }
 
     // Oppgave 6
@@ -225,7 +262,41 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public T fjern(int indeks) {
         // Skal fjerne (og retunere) verdien på posisjon indeks (som først må sjekkes)
 
-        throw new UnsupportedOperationException();
+        // Sjekker indeksen ved å bruke metoden indekskontroll()
+        indeksKontroll(indeks, false);
+
+        // Hvis listen er tom
+        if (antall == 0){
+            throw new NoSuchElementException("Listen er tom!");
+        }
+
+        Node<T> fjernNode = finnNode(indeks);
+
+        if (fjernNode == null){
+            return null;
+        }
+
+        if (fjernNode == hode && fjernNode.neste != null){
+            hode = fjernNode.neste;
+        }
+
+        if (fjernNode == hale && fjernNode.forrige != null){
+            hale = fjernNode.forrige;
+        }
+
+        if (fjernNode.forrige != null){
+            fjernNode.forrige.neste = fjernNode.neste;
+        }
+
+        if (fjernNode.neste != null){
+            fjernNode.neste.forrige = fjernNode.forrige;
+        }
+
+        antall--;
+        endringer++;
+
+        // Returnerer verdien på posisjon indeks
+        return fjernNode.verdi;
     }
 
     // Oppgave 7
