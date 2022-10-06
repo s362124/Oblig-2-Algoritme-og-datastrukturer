@@ -200,14 +200,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     // Oppgave 3 a)
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        // Jeg vet ikke om dette er riktig, så må få dette sjekket.
         Objects.requireNonNull(nyverdi, "Null-verdier kan ikke legges inn!");
-        // Variabelen øker for hver endring, dvs. for alle mutatorer.
-        for (int i = 0; i < endringer; ++i){
-            // return nyverdi;
-        }
+        indeksKontroll(indeks, false);
+        Node<T> prev = finnNode(indeks);
+        T prevVerdi = prev.verdi;
+        prev.verdi = nyverdi;
 
-        return nyverdi;
+        endringer++;
+
+        return prevVerdi;
     }
 
     // Oppgave 6
