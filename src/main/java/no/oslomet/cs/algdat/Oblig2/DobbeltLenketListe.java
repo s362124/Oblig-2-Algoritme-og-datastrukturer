@@ -212,13 +212,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return nyverdi;
     }
 
+    // Oppgave 6
     @Override
     public boolean fjern(T verdi) {
+        // Skal fjerne verdi fra listen og så returnere true.
+        boolean forekomst = false;
         throw new UnsupportedOperationException();
     }
 
+    // Oppgave 6
     @Override
     public T fjern(int indeks) {
+        // Skal fjerne (og retunere) verdien på posisjon indeks (som først må sjekkes)
+
         throw new UnsupportedOperationException();
     }
 
