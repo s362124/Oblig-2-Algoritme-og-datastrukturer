@@ -45,33 +45,33 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public DobbeltLenketListe(T[] a) {
-        
+
         if (a == null){
-        throw new NullPointerException("Tabellen a er null!!");
-    }
-        
-    Node<T> forrige = null;
-    Node<T> newNode = null;
-    
-    for (T verdi : a) {
-        if(verdi ==  null) {
-            continue;
+            throw new NullPointerException("Tabellen a er null!!");
         }
-        antall++;
-        newNode = new Node<>(verdi, forrige, null);
-        
-        if(forrige != null) {
-            forrige.neste = newNode;
+
+        Node<T> forrige = null;
+        Node<T> newNode = null;
+
+        for (T verdi : a) {
+            if(verdi ==  null) {
+                continue;
+            }
+            antall++;
+            newNode = new Node<>(verdi, forrige, null);
+
+            if(forrige != null) {
+                forrige.neste = newNode;
+            }
+            else {
+                hode = newNode;
+            }
+
+            forrige = newNode;
+            //endringer
         }
-        else {
-            hode = newNode;
-        }
-        
-        forrige = newNode;
-        //endringer 
-    }
-    hale = newNode;
-    
+        hale = newNode;
+
     }
 
     // Oppgave 3 a)
@@ -161,6 +161,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+
+    // Oppgave 2
     @Override
     public void leggInn(int indeks, T verdi) {
         throw new UnsupportedOperationException();
@@ -243,12 +245,42 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer++;
     }
 
+    // Oppgave 2
     @Override
     public String toString() {
+        //Bygge en String foran
+        StringBuilder sFor = new StringBuilder();
+        if(tom())
+            return " [] ";
+        sFor .append('[');
+        Node <T> p = hode;
+        sFor .append(p.verdi);
+        p = p.neste;
+        while(p != null ) {
+            sFor .append(',').append(' ').append(p.verdi);
+            p = p. neste;
+        }
+        sFor.append(']');
+
+
         throw new UnsupportedOperationException();
     }
 
     public String omvendtString() {
+        StringBuilder sBack = new StringBuilder();
+        if (tom()){
+            return"[]";
+            sBack.append('[');
+            Node<T> p = hale;
+            sBack.append(p.verdi);
+            p = p. forrige;
+            while( p != null){
+                // sBack.append(',').append
+            }
+
+
+
+        }
         throw new UnsupportedOperationException();
     }
 
