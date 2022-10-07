@@ -160,7 +160,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     }
 
+
     @Override
+    // Oppgave 2-b
     public boolean leggInn(T verdi) {
         Objects.requireNonNull(verdi," Det er ikke tillatt med null verdi");
         if(antall == 0){
@@ -177,8 +179,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
 
-    // Oppgave 2-2b
+
     @Override
+    // oppgave 5
     public void leggInn(int indeks, T verdi) {
         Objects.requireNonNull(verdi, " Det er ikke tillatt med null verdier ");
 
@@ -191,10 +194,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hode.forrige = null;
 
         } else if (indeks == 0 && antall > 0) {
+
             hode = finnNode(0);
 
             Node<T> current = hode;
-            Node<T> xNode = new Node<>(verdi, null, current);
+            Node<T> xNode = new Node<> (verdi, null, current);
 
             xNode.neste = current;
             current.forrige = xNode;
@@ -212,6 +216,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         else {
             Node<T> prev = null;
             Node<T> current = hode;
+
             for (int i = 1; i < indeks; i++)
                 current = current.neste;
             prev = current;
@@ -419,6 +424,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
+    // oppgave 8
     public Iterator<T> iterator() {
         return new DobbeltLenketListeIterator();
 
@@ -427,7 +433,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public Iterator<T> iterator(int indeks) {
         indeksKontroll(indeks, false);
-        return new DobbeltLenketListeIterator(indeks);
+
+        return
+                new DobbeltLenketListeIterator(indeks);
         //throw new UnsupportedOperationException();
     }
 
@@ -462,10 +470,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             } else if (! hasNext()) {
                 throw new NoSuchElementException(" Det finnes ingen verdier!");}
                 fjernOK = true;
-                T denneVerdi = denne.verdi;
-                denne = denne.neste;
-                return denneVerdi;
 
+                T denneVerdi = denne.verdi ;
+
+                denne = denne.neste ;
+
+                return denneVerdi ;
 
         }
 
