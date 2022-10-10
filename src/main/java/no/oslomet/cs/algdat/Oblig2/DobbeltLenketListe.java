@@ -516,7 +516,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+        for(int i= liste.antall(); i>0; i--){
+            Iterator<T> itera = liste.iterator();
+            T maxVardi = itera.next();
+            int maxIndex = 0;
+
+            for(int k =1; k<i; k++){
+                T temp = itera.next();
+                if(c.compare(temp,maxVardi) < 0){
+                    maxVardi = temp;
+                    maxIndex = k ;
+                }
+            }
+          liste.leggInn(liste.fjern(maxIndex));
+        }
     }
 
 } // class DobbeltLenketListe
