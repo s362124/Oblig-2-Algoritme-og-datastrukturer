@@ -123,11 +123,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     // Oppgave 3 b)
     // Legger inn metoden fratilKontroll som en privat metode.
     private void fratilKontroll(int antall, int fra, int til) {
-        /*
-        Se for-løkke:
-        Indeksene er lovlige hvis i starter fra fra-verdien og
-        slutter til når i er mindre enn til-verdien.
-         */
         // Hvis fra-verdien er mindre enn null, så er verdien negativ
         if (fra < 0){
             throw new IndexOutOfBoundsException("fra (" + fra + ") - Intervallet er negativt!");
