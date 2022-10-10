@@ -423,14 +423,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
        // throw new UnsupportedOperationException();
     }
 
-    @Override
     // oppgave 8
+    @Override
     public Iterator<T> iterator() {
         return new DobbeltLenketListeIterator();
 
         //throw new UnsupportedOperationException();
     }
 
+    // Oppgave 8
     public Iterator<T> iterator(int indeks) {
         indeksKontroll(indeks, false);
 
@@ -515,6 +516,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     } // class DobbeltLenketListeIterator
 
+    // Oppgave 10
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
         //throw new UnsupportedOperationException();
         for(int i= liste.antall(); i>0; i--){
